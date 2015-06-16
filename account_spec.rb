@@ -74,4 +74,12 @@ describe SavingsAccount do
       expect(account.balance).to eq 100
     end
   end
+
+  describe '.add_interest' do
+    let(:account) { SavingsAccount.new(1, 10_000) }
+    it "adds interest to current balance" do
+      account.add_interest(0.25)
+      expect(account.balance).to eq 10_025
+    end
+  end
 end

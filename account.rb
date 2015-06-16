@@ -1,10 +1,3 @@
-# It should include the following new methods:
-
-# #add_interest(rate): Calculate the interest on the balance and add the interest to the balance. Return the interest that was calculated and added to the balance (not the updated balance).
-# Input rate is assumed to be a percentage (i.e. 0.25).
-# The formula for calculating interest is balance * rate/100
-# Example: If the interest rate is 0.25% and the balance is $10,000, then the interest is $25 and the new balance becomes $10,025.
-#
 class Account
   attr_accessor :id, :initial_balance, :balance
 
@@ -49,6 +42,10 @@ class SavingsAccount < Account
   def initialize id, initial_balance
     check_minimum_balance initial_balance
     super
+  end
+
+  def add_interest rate
+    self.balance = self.balance*(1 + rate/100)
   end
 
   def withdraw amount
