@@ -1,5 +1,3 @@
-# #withdraw(amount): The input amount gets taken out of the account as result of an ATM transaction. Each withdrawal 'transaction' incurs a fee of $2 that is taken out of the balance.
-# Does not allow the account to go below the $10 minimum balance - Will output a warning message and return the original un-modified balance
 # It should include the following new methods:
 
 # #add_interest(rate): Calculate the interest on the balance and add the interest to the balance. Return the interest that was calculated and added to the balance (not the updated balance).
@@ -43,8 +41,17 @@ class Account
 end
 
 class SavingsAccount < Account
+
+  class MinimumBalanceError < StandardError; end
+
   def initialize id, initial_balance
     check_minimum_balance initial_balance
+    super
+  end
+
+  def withdraw amount
+    check_withdrawal amount
+    deduct_transaction_fee
     super
   end
 
@@ -53,4 +60,16 @@ class SavingsAccount < Account
   def check_minimum_balance balance
     raise ArgumentError if balance < 10
   end
+
+  def check_withdrawal amount
+    max_withdrawal = self.balance - 10
+    if amount > max_withdrawal
+      raise MinimumBalanceError, "You only can withdraw $#{max_withdrawal}!"
+    end
+  end
+
+  def deduct_transaction_fee
+    self.balance -= 2
+  end
+
 end
