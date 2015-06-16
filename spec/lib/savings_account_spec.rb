@@ -15,7 +15,7 @@ describe SavingsAccount do
     end
   end
 
-  describe '.withdraw' do
+  describe '#withdraw' do
     let(:account) { SavingsAccount.new(1, 100) }
     it "subtracts amount from balance" do
       account.withdraw 10
@@ -30,7 +30,7 @@ describe SavingsAccount do
     end
   end
 
-  describe '.add_interest' do
+  describe '#add_interest' do
     let(:account) { SavingsAccount.new(1, 10_000) }
     it "adds interest to current balance" do
       account.add_interest(0.25)

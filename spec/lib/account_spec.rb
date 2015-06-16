@@ -17,7 +17,7 @@ describe Account do
     end
   end
 
-  describe '.withdraw' do
+  describe '#withdraw' do
     let(:account) { Account.new(1, 100) }
     it "subtracts amount from balance" do
       account.withdraw 10
@@ -32,7 +32,7 @@ describe Account do
     end
   end
 
-  describe '.deposit' do
+  describe '#deposit' do
     let(:account) { Account.new(1, 100) }
     it "adds amount to balance" do
       account.deposit 10
