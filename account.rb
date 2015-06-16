@@ -1,7 +1,5 @@
 # Create an Account class with a minimum of 6 specs. The class should have the following methods:
 
-# #deposit(amount): Adds the input amount to the account balance as a result of an ATM transaction. Return value should be the updated account balance
-# #balance: Returns the current account balance
 # Create a SavingsAccount class with a minimum of 6 specs. The class should inherit behavior from the Account class. It should include updated logic within the following methods:
 
 # self.new(id, initial_balance): creates a new instance with the instance variable id and 'initial_balance' assigned
@@ -26,6 +24,10 @@ class Account
     @id = id
     @initial_balance = initial_balance
     @balance = initial_balance
+  end
+
+  def deposit amount
+    @balance += amount
   end
 
   def withdraw amount

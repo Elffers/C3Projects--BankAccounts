@@ -28,4 +28,12 @@ describe Account do
       expect(account.balance).to eq 100
     end
   end
+
+  describe '.deposit' do
+    let(:account) { Account.new(1, 100) }
+    it "adds amount to balance" do
+      account.deposit 10
+      expect(account.balance).to eq 110
+    end
+  end
 end
