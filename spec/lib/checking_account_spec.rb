@@ -1,4 +1,21 @@
 describe CheckingAccount do
+  describe '#initialize' do
+    let(:account) { CheckingAccount.new(1, 10) }
+    it "has an id and initial balance" do
+      expect(account.id).to eq 1
+      expect(account.initial_balance).to eq 10
+    end
+
+    it "cannot have a negative balance" do
+      expect{ CheckingAccount.new(1, -10) }.to raise_error ArgumentError
+    end
+
+    it "can have an initial balance of 0" do
+      account = CheckingAccount.new 1, 0
+      expect(account.initial_balance).to eq 0
+    end
+  end
+
   describe '#withdraw' do
     let(:account) { CheckingAccount.new(1, 100) }
     it "subtracts amount from balance" do
