@@ -1,6 +1,8 @@
 class Account
   attr_accessor :id, :initial_balance, :balance
 
+  TRANSACTION_FEE = 0
+
   class NegativeBalanceError < StandardError; end
 
   def initialize(id, initial_balance)
@@ -17,6 +19,7 @@ class Account
 
   def withdraw amount
     check_withdrawal amount
+    deduct_transaction_fee
     @balance -= amount
   end
 
@@ -30,5 +33,9 @@ class Account
     if amount > self.balance
       raise NegativeBalanceError, "You only can withdraw $#{balance}!"
     end
+  end
+
+  def deduct_transaction_fee
+    self.balance -= self.class::TRANSACTION_FEE
   end
 end
