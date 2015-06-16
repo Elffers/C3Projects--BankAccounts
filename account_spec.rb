@@ -12,6 +12,11 @@ describe Account do
     it "cannot have a negative balance" do
       expect{ Account.new(1, -10) }.to raise_error ArgumentError
     end
+
+    it "can have an initial balance of 0" do
+      account = Account.new 1, 0
+      expect(account.initial_balance).to eq 0
+    end
   end
 
   describe '.withdraw' do
@@ -34,6 +39,24 @@ describe Account do
     it "adds amount to balance" do
       account.deposit 10
       expect(account.balance).to eq 110
+    end
+  end
+end
+
+describe SavingsAccount do
+  describe ".initialize" do
+    it "has an id and initial balance" do
+      account = SavingsAccount.new 1, 100
+      expect(account.id).to eq 1
+      expect(account.initial_balance).to eq 100
+    end
+
+    it "cannot have a negative balance" do
+      expect{ SavingsAccount.new(1, -10) }.to raise_error ArgumentError
+    end
+
+    it "cannot have an initial balance of 0" do
+      expect{ SavingsAccount.new(1, 0) }.to raise_error ArgumentError
     end
   end
 end
