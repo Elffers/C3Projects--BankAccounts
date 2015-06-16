@@ -42,6 +42,8 @@ end
 
 class SavingsAccount < Account
 
+  MINIMUM_BALANCE = 10
+
   class MinimumBalanceError < StandardError; end
 
   def initialize id, initial_balance
@@ -58,11 +60,11 @@ class SavingsAccount < Account
   private
 
   def check_minimum_balance balance
-    raise ArgumentError if balance < 10
+    raise ArgumentError if balance < MINIMUM_BALANCE
   end
 
   def check_withdrawal amount
-    max_withdrawal = self.balance - 10
+    max_withdrawal = self.balance - MINIMUM_BALANCE
     if amount > max_withdrawal
       raise MinimumBalanceError, "You only can withdraw $#{max_withdrawal}!"
     end
