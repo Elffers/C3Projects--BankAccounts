@@ -6,6 +6,7 @@ module Account
     TRANSACTION_FEE = 1
     MONTHLY_FREE_CHECKS = 3
     OVERDRAFT_MAX = 10
+    CHECK_WITHDRAWAL_FEE = 2
 
     class OverdraftError < StandardError; end
 
@@ -30,7 +31,7 @@ module Account
     def calculate_fee
       used_checks_count = checks_used_this_month
       if used_checks_count >= MONTHLY_FREE_CHECKS
-        check_withdrawal_fee
+        deduct_check_withdrawal_fee
       end
 
       self.checks_used += 1
@@ -52,8 +53,8 @@ module Account
       end
     end
 
-    def check_withdrawal_fee
-      self.balance -= 2
+    def deduct_check_withdrawal_fee
+      self.balance -= CHECK_WITHDRAWAL_FEE
     end
 
     def current_month
