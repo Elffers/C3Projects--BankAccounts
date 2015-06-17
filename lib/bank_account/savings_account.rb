@@ -28,4 +28,3 @@ class SavingsAccount < Account
     end
   end
 end
-

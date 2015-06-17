@@ -58,5 +58,4 @@ class CheckingAccount < Account
   def current_month
     Time.now.month
   end
-
 end
