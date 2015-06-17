@@ -2,7 +2,7 @@ require 'timecop'
 
 module Account
   describe CheckingAccount do
-    describe '#initialize' do
+    describe '.initialize' do
       let(:account) { CheckingAccount.new(1, 10) }
       it "has an id and initial balance" do
         expect(account.id).to eq 1
